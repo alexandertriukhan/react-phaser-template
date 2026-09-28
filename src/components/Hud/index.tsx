@@ -1,29 +1,16 @@
 import { observer } from 'mobx-react-lite';
-import { Box, Button, Typography } from '@mui/material';
 import gameStore from '../../store/gameStore';
+import styles from './styles.module.css';
 
-/**
- * Overlay above the canvas. The container ignores the pointer so clicks reach the game;
- * interactive children opt back in with `pointerEvents: 'auto'`.
- */
+/** Overlay above the canvas. Re-renders only when the store values it reads change. */
 const Hud = observer(function Hud() {
   return (
-    <Box
-      sx={{
-        position: 'absolute',
-        inset: 0,
-        p: 2,
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-        pointerEvents: 'none',
-      }}
-    >
-      <Typography variant="h5">Score: {gameStore.score}</Typography>
-      <Button variant="contained" onClick={gameStore.togglePause} sx={{ pointerEvents: 'auto' }}>
+    <div className={styles.hud}>
+      <div className={styles.score}>Score: {gameStore.score}</div>
+      <button type="button" className={styles.button} onClick={gameStore.togglePause}>
         {gameStore.isPaused ? 'Resume' : 'Pause'}
-      </Button>
-    </Box>
+      </button>
+    </div>
   );
 });
 

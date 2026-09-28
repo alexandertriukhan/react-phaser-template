@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
-import { Box } from '@mui/material';
 import type { Game } from 'phaser';
 import { startGame } from '../../game';
+import styles from './styles.module.css';
 
 /** Owns the Phaser.Game instance: one game per mount, destroyed on unmount. */
 const PhaserGame = () => {
@@ -26,8 +26,7 @@ const PhaserGame = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startGame]);
 
-  // touch-action: none stops mobile browsers from scrolling/zooming instead of passing touches to the game.
-  return <Box ref={containerRef} sx={{ position: 'absolute', inset: 0, touchAction: 'none' }} />;
+  return <div ref={containerRef} className={styles.container} />;
 };
 
 export default PhaserGame;
