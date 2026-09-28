@@ -1,0 +1,6 @@
+.container {
+  position: absolute;
+  inset: 0;
+  /* Stops mobile browsers from scrolling/zooming instead of passing touches to the game. */
+  touch-action: none;
+}
